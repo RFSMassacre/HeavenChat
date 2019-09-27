@@ -1,0 +1,5 @@
+name: HeavenChat
+version: 1.0
+main: us.rfsmassacre.HeavenChat.ChatPlugin
+author: RFSMassacre
+softdepend: [BungeeAuthenticator, BPA]

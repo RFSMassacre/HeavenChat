@@ -1,0 +1,10 @@
+&3&l «&e&l&m*-----------------------------------------*&3&l»
+ &b&lOnline Staff &3&l> &f{list:staff}
+ 
+ &e&lHub &e(&f{count:Hub}&e) &f{list:Hub}
+ &a&lSurvival &a(&f{count:Survival}&a) &f{list:Survival}
+ &b&lCreative &b(&f{count:Creative}&b) &f{list:Creative}
+ &c&lKitPVP &c(&f{count:KitPVP}&c) &f{list:KitPVP}
+ 
+ &7There are &a{count:global} &7out of &c80 &7players online.
+&3&l «&e&l&m*-----------------------------------------*&3&l»

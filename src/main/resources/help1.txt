@@ -1,0 +1,10 @@
+&3&l «&e&l&m*-----------------------------------------*&3&l»
+ &eHeaven&bChat &7Commands                     &8[&71&8/&72&8]
+ 
+ &3● &b/afk &fToggle AFK status.
+ &3● &b/broadcast &fBroadcast message.
+ &3● &b/ch &fManage what channels you're in.
+ &3● &b/ignore &fToggle a player's messages.
+ &3● &b/list &fView online players.
+ &3● &b/nick &fManage your nickname.
+ &3&l «&e&l&m*-----------------------------------------*&3&l»
