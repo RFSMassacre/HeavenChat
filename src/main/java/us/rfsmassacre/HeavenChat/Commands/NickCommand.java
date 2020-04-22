@@ -1,5 +1,6 @@
 package us.rfsmassacre.HeavenChat.Commands;
 
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -85,7 +86,7 @@ public class NickCommand extends HeavenCommand
 			if (!isConsole(sender) && args.length >= 1)
 			{
 				Member member = members.getMember((ProxiedPlayer)sender);
-				String nickname = args[0];
+				String nickname = args[0] + ChatColor.RESET;
 				String rawNickname = ChatManager.stripColors(nickname);
 				
 				ConfigManager config = ChatPlugin.getConfigManager();
@@ -206,7 +207,7 @@ public class NickCommand extends HeavenCommand
 			if (args.length >= 3)
 			{
 				Member target = members.findMember(args[1]);
-				String nickname = args[2];
+				String nickname = args[2] + ChatColor.RESET;
 				String rawNickname = ChatManager.stripColors(nickname);
 				
 				ConfigManager config = ChatPlugin.getConfigManager();

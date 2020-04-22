@@ -18,6 +18,6 @@ public class ServerLoginListener implements Listener
 
 		//Notify proxy of joining a second after fully loaded in
 		new SendLoginTask(player).runTaskLater(ChatBridge.getInstance(), 5L);
-		//new SendAFKTask(player).runTaskLater(ChatBridge.getInstance(), 5L);
+		new SendAFKTask(player).runTaskLater(ChatBridge.getInstance(), 5L);
 	}
 }

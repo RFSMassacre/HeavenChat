@@ -3,6 +3,7 @@ package us.rfsmassacre.HeavenChat.Listeners;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PluginMessageEvent;
+import net.md_5.bungee.api.event.TabCompleteEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
@@ -22,6 +23,9 @@ import us.rfsmassacre.HeavenChat.Tasks.SendPingTask;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.ChatManager;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.ConfigManager;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.LocaleManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProxyChatListener implements Listener
 {
@@ -351,6 +355,34 @@ public class ProxyChatListener implements Listener
 				new SendPingTask(sender).run();
 			if (target.hasPermission("heavenchat.ping.pm"))
 				new SendPingTask(target).run();
+		}
+	}
+
+
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onPlayerTabComplete(TabCompleteEvent event)
+	{
+		List<String> commands = config.getStringList("commands");
+		int firstSpace = event.getCursor().charAt(' ');
+		String command = event.getCursor().toLowerCase().substring(0, firstSpace);
+
+		if (commands.contains(command))
+		{
+			String partialPlayerName = event.getCursor().toLowerCase();
+			int lastSpaceIndex = partialPlayerName.lastIndexOf(' ');
+			if (lastSpaceIndex >= 0)
+			{
+				partialPlayerName = partialPlayerName.substring(lastSpaceIndex + 1);
+			}
+
+			for (ProxiedPlayer player : ProxyServer.getInstance().getPlayers())
+			{
+				if (player.getName().toLowerCase().startsWith(partialPlayerName)
+						&& !event.getSuggestions().contains(player.getName()))
+				{
+					event.getSuggestions().add(player.getName());
+				}
+			}
 		}
 	}
 }

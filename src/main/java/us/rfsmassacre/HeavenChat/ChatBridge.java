@@ -8,11 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.chat.Chat;
 
 import us.rfsmassacre.HeavenChat.Channels.PluginChannel;
-import us.rfsmassacre.HeavenChat.Listeners.ServerAFKListener;
-import us.rfsmassacre.HeavenChat.Listeners.ServerChatListener;
-import us.rfsmassacre.HeavenChat.Listeners.ServerConfigListener;
-import us.rfsmassacre.HeavenChat.Listeners.ServerLoginListener;
-import us.rfsmassacre.HeavenChat.Listeners.ServerPingListener;
+import us.rfsmassacre.HeavenChat.Listeners.*;
 import us.rfsmassacre.HeavenChat.Managers.OptionManager;
 import us.rfsmassacre.HeavenChat.Tasks.SendPrefixTask;
 import us.rfsmassacre.HeavenChat.Tasks.SendProximityTask;
@@ -34,7 +30,9 @@ public class ChatBridge extends JavaPlugin
 		//Register plugin message channels
 		getServer().getMessenger().registerIncomingPluginChannel(this, PluginChannel.PING, new ServerPingListener());
 		getServer().getMessenger().registerIncomingPluginChannel(this, PluginChannel.CONFIG, new ServerConfigListener());
-		
+		getServer().getMessenger().registerIncomingPluginChannel(this, PluginChannel.DISPLAYNAME, new ServerDisplaynameListener());
+		getServer().getMessenger().registerIncomingPluginChannel(this, PluginChannel.COMMAND, new ServerCommandListener());
+
 		getServer().getMessenger().registerOutgoingPluginChannel(this, PluginChannel.LOGIN);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, PluginChannel.AFK);
 		getServer().getMessenger().registerOutgoingPluginChannel(this, PluginChannel.PREFIX);

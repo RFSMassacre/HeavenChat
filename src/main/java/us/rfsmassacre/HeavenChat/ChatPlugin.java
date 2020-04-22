@@ -7,19 +7,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import us.rfsmassacre.HeavenChat.Channels.PluginChannel;
-import us.rfsmassacre.HeavenChat.Commands.AFKCommand;
-import us.rfsmassacre.HeavenChat.Commands.MainCommand;
-import us.rfsmassacre.HeavenChat.Commands.AlertCommand;
-import us.rfsmassacre.HeavenChat.Commands.ChannelCommand;
-import us.rfsmassacre.HeavenChat.Commands.FilterCommand;
-import us.rfsmassacre.HeavenChat.Commands.IgnoreCommand;
-import us.rfsmassacre.HeavenChat.Commands.ListCommand;
-import us.rfsmassacre.HeavenChat.Commands.NickCommand;
-import us.rfsmassacre.HeavenChat.Commands.PMCommand;
-import us.rfsmassacre.HeavenChat.Commands.RealNameCommand;
-import us.rfsmassacre.HeavenChat.Commands.ReplyCommand;
-import us.rfsmassacre.HeavenChat.Commands.SpyCommand;
-import us.rfsmassacre.HeavenChat.Commands.UnignoreCommand;
+import us.rfsmassacre.HeavenChat.Commands.*;
 import us.rfsmassacre.HeavenChat.Listeners.ProxyProximityListener;
 import us.rfsmassacre.HeavenChat.Listeners.ProxyAFKListener;
 import us.rfsmassacre.HeavenChat.Listeners.ProxyChannelListener;
@@ -32,9 +20,11 @@ import us.rfsmassacre.HeavenChat.Managers.LogsManager;
 import us.rfsmassacre.HeavenChat.Managers.MemberManager;
 import us.rfsmassacre.HeavenChat.Managers.ProfanityManager;
 import us.rfsmassacre.HeavenChat.Managers.SpamManager;
+import us.rfsmassacre.HeavenChat.Members.Member;
 import us.rfsmassacre.HeavenChat.Schedulers.AFKScheduler;
 import us.rfsmassacre.HeavenChat.Schedulers.ChannelScheduler;
 import us.rfsmassacre.HeavenChat.Tasks.SendConfigTask;
+import us.rfsmassacre.HeavenChat.Tasks.SendDisplaynameTask;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.ConfigManager;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.LocaleManager;
 
@@ -87,6 +77,8 @@ public class ChatPlugin extends Plugin
 		getProxy().registerChannel(PluginChannel.PROXIMITY);
 		getProxy().registerChannel(PluginChannel.PING);
 		getProxy().registerChannel(PluginChannel.CONFIG);
+		getProxy().registerChannel(PluginChannel.DISPLAYNAME);
+		getProxy().registerChannel(PluginChannel.COMMAND);
 		
 		//Register listeners
 		getProxy().getPluginManager().registerListener(this, new ProxyLoginListener());
@@ -110,6 +102,9 @@ public class ChatPlugin extends Plugin
 		getProxy().getPluginManager().registerCommand(this, new AFKCommand());
 		getProxy().getPluginManager().registerCommand(this, new ListCommand());
 		getProxy().getPluginManager().registerCommand(this, new RealNameCommand());
+		getProxy().getPluginManager().registerCommand(this, new ExecuteCommand());
+		getProxy().getPluginManager().registerCommand(this, new FakeJoinCommand());
+		getProxy().getPluginManager().registerCommand(this, new FakeLeaveCommand());
 		
 		//Forward config values to sub-servers
 		getProxy().getScheduler().schedule(this, new Runnable()
@@ -128,6 +123,22 @@ public class ChatPlugin extends Plugin
 				}
 			}
 	
+		}, 1, 1, TimeUnit.SECONDS);
+
+		//Constantly forward all of the displaynames to each server.
+		getProxy().getScheduler().schedule(this, new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				for (Member member : members.getOnlineMembers())
+				{
+					if (member != null)
+					{
+						new SendDisplaynameTask(member).run();
+					}
+				}
+			}
 		}, 1, 1, TimeUnit.SECONDS);
 		
 		//Reload settings one second after start up to override channel commands.

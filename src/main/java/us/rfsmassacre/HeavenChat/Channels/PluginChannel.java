@@ -11,4 +11,7 @@ public class PluginChannel
 	
 	public static final String PING = "heavenchat:ping";
 	public static final String CONFIG = "heavenchat:config";
+
+	public static final String DISPLAYNAME = "heavenchat:display";
+	public static final String COMMAND = "heavenchat:command";
 }

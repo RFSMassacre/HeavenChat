@@ -43,6 +43,15 @@ rank-colors:
     - "mod &b"
     - "helper &a"
 
+commands:
+    - "ban"
+    - "kick"
+    - "mute"
+    - "warn"
+    - "kick"
+    - "op"
+    - "deop"
+
 servers:
     Discord: 
         prefix: "&1[&9Discord&1] "

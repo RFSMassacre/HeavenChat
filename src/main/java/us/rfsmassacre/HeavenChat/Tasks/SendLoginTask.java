@@ -22,7 +22,7 @@ public class SendLoginTask extends SendBukkitTask
 			Chat chat = ChatBridge.getVaultChat();
 			String prefix = (chat != null ? chat.getPlayerPrefix(player) : "");
 				
-			player.sendPluginMessage(ChatBridge.getInstance(), channel.toString(), prefix.getBytes());
+			player.sendPluginMessage(ChatBridge.getInstance(), channel, prefix.getBytes());
 		}
 	}
 }

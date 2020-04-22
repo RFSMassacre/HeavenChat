@@ -9,6 +9,7 @@ import net.md_5.bungee.api.event.PluginMessageEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+import org.bukkit.Bukkit;
 import us.rfsmassacre.HeavenChat.ChatPlugin;
 import us.rfsmassacre.HeavenChat.Channels.PluginChannel;
 import us.rfsmassacre.HeavenChat.Managers.MemberManager;
@@ -33,7 +34,15 @@ public class ProxyProximityListener implements Listener
 				String[] stringIds = new String(event.getData()).split(" ");
 				for (String stringId : stringIds)
 				{
-					nearbyIds.add(UUID.fromString(stringId));
+					try
+					{
+						UUID playerId = UUID.fromString(stringId);
+						nearbyIds.add(playerId);
+					}
+					catch (IllegalArgumentException exception)
+					{
+						//Do nothing
+					}
 				}
 				member.setProximityPlayerIds(nearbyIds);
 			}

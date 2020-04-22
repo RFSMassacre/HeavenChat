@@ -30,7 +30,6 @@ channel:
     already-focused: "&cYou're already chatting in the &f{channel}&c."
     already-focused-target: "&f{target} &cis already chatting in the &f{channel}&c."
     already-in-channel: "&f{member} &7is already in the &f{channel}&7."
-    not-in-channel: "&f{member} &cis not in the &f{channel}&c."
     no-perm: "&cYou do not have permission for the &f{channel}&c."
     target-no-perm: "&f{target} &cdoes not have permission for the &f{channel}&c."
     invalid-args: "&7Invalid arguments. Type &e/ch help &7for a list of options."
@@ -109,3 +108,6 @@ help:
     nickname: "&7Nickname Commands&8:\n &8 • &3/nick &7Show current nickname.\n &8 • &3/nick <nickname> &7Update nickname.\n &8 • &3/nick clear &7Clear nickname."
     ignore: "&7Ignore Commands&8:\n &8 •&3/ignore list &7List ignored players.\n &8 •&3/ignore <player> &7Ignore player.\n &8 •&3/unignore <player> &7Unignore player."
     pm: "&7Private Message Commands&8:\n &8 •&3/pm &7Leave current PM.\n &8 •&3/pm <player> &7Focus chat to player.\n &8 •&3/pm <player> <message> &7Send player a private message."
+
+execute:
+    invalid-args: "&7Invalid arguments."
