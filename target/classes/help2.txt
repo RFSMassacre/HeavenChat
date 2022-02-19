@@ -1,0 +1,10 @@
+&3&l «&e&l&m*-----------------------------------------*&3&l»
+ &eHeaven&bChat &7Commands                     &8[&72&8/&72&8]
+ 
+ &3● &b/pm &fPrivate message a player.
+ &3● &b/r &fReply to a private message
+ &3● &b/realname &fFind real username of a nickname.
+ &3● &b/ss &fToggle social-spy.
+ 
+ 
+ &3&l «&e&l&m*-----------------------------------------*&3&l»

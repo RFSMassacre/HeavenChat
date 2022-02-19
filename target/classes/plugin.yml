@@ -1,0 +1,5 @@
+name: HeavenChat
+version: 1.0
+api-version: 1.13
+main: us.rfsmassacre.HeavenChat.ChatBridge
+author: RFSMassacre
