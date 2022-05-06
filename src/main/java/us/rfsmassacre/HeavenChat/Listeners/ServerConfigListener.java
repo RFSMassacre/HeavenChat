@@ -15,8 +15,7 @@ public class ServerConfigListener implements PluginMessageListener
 	{
 		options = ChatBridge.getOptionManager();
 	}
-	
-	@Override
+
 	public void onPluginMessageReceived(String channel, Player player, byte[] data) 
 	{
 		//Keeps all option managers in sync with the proxy server config file

@@ -11,6 +11,7 @@ import us.rfsmassacre.HeavenChat.Members.Member;
 import us.rfsmassacre.HeavenLib.BungeeCord.Commands.ProxyCommand;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.ChatManager;
 import us.rfsmassacre.HeavenLib.BungeeCord.Managers.ConfigManager;
+import us.rfsmassacre.HeavenLib.BungeeCord.Managers.LocaleManager;
 
 public class NickCommand extends HeavenCommand
 {
@@ -85,7 +86,8 @@ public class NickCommand extends HeavenCommand
 		{
 			if (!isConsole(sender) && args.length >= 1)
 			{
-				Member member = members.getMember((ProxiedPlayer)sender);
+				ProxiedPlayer player = (ProxiedPlayer)sender;
+				Member member = members.getMember(player);
 				String nickname = args[0] + ChatColor.RESET;
 				String rawNickname = ChatManager.stripColors(nickname);
 				
@@ -104,7 +106,16 @@ public class NickCommand extends HeavenCommand
 				Member matchedMember = members.matchNickname(nickname);
 				if (matchedMember == null || matchedMember.equals(member))
 				{
-					member.setNickname(nickname);
+					boolean color = player.hasPermission("heavenchat.nickname.color");
+					boolean bold = player.hasPermission("heavenchat.nickname.bold");
+					boolean italic = player.hasPermission("heavenchat.nickname.italic");
+					boolean underline = player.hasPermission("heavenchat.nickname.underline");
+					boolean strikethrough = player.hasPermission("heavenchat.nickname.strikethrough");
+					boolean magic = player.hasPermission("heavenchat.nickname.magic");
+					boolean hex = player.hasPermission("heavenchat.nickname.hex");
+
+					member.setNickname(ChatManager.format(nickname, color, bold, italic, underline, strikethrough,
+							magic, hex));
 					members.saveMember(member);
 					locale.sendLocale(sender, "nickname.update-nick", "{nickname}", member.getNickname());
 				}

@@ -19,15 +19,14 @@ public class ServerPingListener implements PluginMessageListener
 	{
 		options = ChatBridge.getOptionManager();
 	}
-	
-	@Override
-	public void onPluginMessageReceived(String channel, Player player, byte[] data) 
+
+	public void onPluginMessageReceived(String channel, Player player, byte[] data)
 	{
 		if (channel.equals(PluginChannel.PING))
 		{
 			float volume = options.getFloat("PING_VOLUME");
 			float pitch = options.getFloat("PING_PITCH");
-			
+
 			for (Sound sound : Sound.values())
 			{
 				if (sound.toString().contains(options.getString("PING_SOUND")))
@@ -35,7 +34,7 @@ public class ServerPingListener implements PluginMessageListener
 					Player target = Bukkit.getPlayer(UUID.fromString(new String(data)));
 					if (target != null)
 						player.playSound(player.getLocation(), sound, volume, pitch);
-					
+
 					return;
 				}
 			}

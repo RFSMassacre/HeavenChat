@@ -13,7 +13,6 @@ public class ServerCommandListener implements PluginMessageListener
 
     }
 
-    @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] data)
     {
         if (channel.equals(PluginChannel.COMMAND))

@@ -290,17 +290,17 @@ public class Member
 			ConfigManager config = ChatPlugin.getConfigManager();
 			LocaleManager locale = ChatPlugin.getLocaleManager();
 			ProfanityManager profanity = ChatPlugin.getProfanityManager();
-			
+
+			String format = channel.getFormat();
 			String server = config.getString("servers." + sender.getServer() + ".prefix") != null ? 
 					config.getString("servers." + sender.getServer() + ".prefix") : "";
-					
 		    String color = config.getString("servers." + sender.getServer() + ".color") != null ? 
 					config.getString("servers." + sender.getServer() + ".color") : "";
 			
-					locale.sendMessage(player, channel.getFormat(), "{sender}", sender.getDisplayName(),
-					"{prefix}", sender.getPrefix(), "{suffix}", sender.getSuffix(),
-					"{server}", server, "{message}", (filtered ? profanity.censorSwears(event.getMessage()) : event.getMessage()),
-					"{color}", color);
+			locale.sendMessage(player, format, "{sender}", sender.getDisplayName(),
+			"{prefix}", sender.getPrefix(), "{suffix}", sender.getSuffix(),
+			"{server}", server, "{message}", (filtered ? profanity.censorSwears(event.getMessage()) : event.getMessage()),
+			"{color}", color);
 			
 			return true;
 		}

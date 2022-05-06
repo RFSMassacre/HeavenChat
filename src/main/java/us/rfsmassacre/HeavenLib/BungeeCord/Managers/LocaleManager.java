@@ -60,7 +60,7 @@ public class LocaleManager extends ResourceManager
 	{
 		sendMessage(sender, getMessage("prefix") + getMessage(key), replacers);
 	}
-	
+	 
 	public void broadcastMessage(String message, String...replacers)
 	{
 		ProxyServer.getInstance().broadcast(ChatManager.toTextComponent(replaceHolders(message, replacers)));

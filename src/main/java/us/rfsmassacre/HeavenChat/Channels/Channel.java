@@ -19,7 +19,7 @@ public class Channel
 	public static enum ChannelType
 	{
 		GLOBAL, SERVER, LOCAL;
-		
+
 		public static ChannelType fromString(String name)
 		{
 			for (ChannelType type : ChannelType.values())
@@ -27,28 +27,30 @@ public class Channel
 				if (type.toString().equalsIgnoreCase(name))
 					return type;
 			}
-			
+
 			return null;
 		}
 	}
-	
+
 	private String name; //Name of channel
 	private String displayName; //Display name of channel
 	private ChannelType type;
 	private boolean forwarded;
-	
+	private boolean rankOverride;
+
 	private String shortcut; //Shortcut to join or focus on this channel
 	private String format; //Format of the text
-	
+
 	private ArrayList<UUID> memberIds; //List of members that are involved with this channel
 	private FocusCommand command; //Command for this channel
-	
+
 	public Channel()
 	{
 		setName("");
 		setDisplayName("");
 		setShortcut("");
 		setFormat("");
+		setRankOverride(true);
 		setForwarded(true);
 		setMemberIds(new ArrayList<UUID>());
 	}
@@ -56,40 +58,53 @@ public class Channel
 	/*
 	 * Setters and Getters
 	 */
-	public String getName() 
+	public String getName()
 	{
 		return name;
 	}
-	public void setName(String name) 
+
+	public void setName(String name)
 	{
 		this.name = name;
 	}
-	
-	public String getDisplayName() 
+
+	public String getDisplayName()
 	{
 		return displayName;
 	}
-	public void setDisplayName(String displayName) 
+
+	public void setDisplayName(String displayName)
 	{
 		this.displayName = displayName;
 	}
 
-	public ChannelType getType() 
+	public ChannelType getType()
 	{
 		return type;
 	}
-	public void setType(ChannelType type) 
+
+	public void setType(ChannelType type)
 	{
 		this.type = type;
 	}
-	
-	public boolean isForwarded() 
+
+	public boolean isForwarded()
 	{
 		return forwarded;
 	}
-	public void setForwarded(boolean forwarded) 
+
+	public void setForwarded(boolean forwarded)
 	{
 		this.forwarded = forwarded;
+	}
+
+	public boolean hasRankOverride()
+	{
+		return rankOverride;
+	}
+	public void setRankOverride(boolean rankOverride)
+	{
+		this.rankOverride = rankOverride;
 	}
 
 	public String getShortcut() 

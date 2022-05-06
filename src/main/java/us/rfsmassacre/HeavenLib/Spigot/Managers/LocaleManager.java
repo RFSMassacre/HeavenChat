@@ -69,7 +69,7 @@ public class LocaleManager extends ResourceManager
 	{
 		Bukkit.broadcastMessage(ChatManager.format(replaceHolders(prefix ? getMessage("prefix") : "" + getMessage(key), replacers)));
 	}
-	public void broadcastLOcale(String key, String...replacers)
+	public void broadcastLocale(String key, String...replacers)
 	{
 		broadcastLocale(true, key, replacers);
 	}

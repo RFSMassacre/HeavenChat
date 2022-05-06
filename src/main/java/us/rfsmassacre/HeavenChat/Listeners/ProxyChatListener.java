@@ -233,24 +233,38 @@ public class ProxyChatListener implements Listener
 	@EventHandler(priority = EventPriority.LOW)
 	public void onColoredChat(ChannelMessageEvent event)
 	{
-		if (!event.isCancelled() && event.getSender().getPlayer() != null)
+		ProxiedPlayer player = event.getSender().getPlayer();
+		if (!event.isCancelled() &&  player != null)
 		{
-			if (!event.getSender().getPlayer().hasPermission("heavenchat.color"))
-			{
-				event.setMessage(ChatManager.stripColors(event.getMessage()));
-			}
+			boolean color = player.hasPermission("heavenchat.chat.color");
+			boolean bold = player.hasPermission("heavenchat.chat.bold");
+			boolean italic = player.hasPermission("heavenchat.chat.italic");
+			boolean underline = player.hasPermission("heavenchat.chat.underline");
+			boolean strikethrough = player.hasPermission("heavenchat.chat.strikethrough");
+			boolean magic = player.hasPermission("heavenchat.chat.magic");
+			boolean hex = player.hasPermission("heavenchat.chat.hex");
+
+			event.setMessage(ChatManager.format(event.getMessage(), color, bold, italic, underline, strikethrough,
+					magic, hex));
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void onColoredPM(PrivateMessageEvent event)
 	{
-		if (!event.isCancelled() && event.getSender().getPlayer() != null)
+		ProxiedPlayer player = event.getSender().getPlayer();
+		if (!event.isCancelled() && player != null)
 		{
-			if (!event.getSender().getPlayer().hasPermission("heavenchat.color"))
-			{
-				event.setMessage(ChatManager.stripColors(event.getMessage()));
-			}
+			boolean color = player.hasPermission("heavenchat.chat.color");
+			boolean bold = player.hasPermission("heavenchat.chat.bold");
+			boolean italic = player.hasPermission("heavenchat.chat.italic");
+			boolean underline = player.hasPermission("heavenchat.chat.underline");
+			boolean strikethrough = player.hasPermission("heavenchat.chat.strikethrough");
+			boolean magic = player.hasPermission("heavenchat.chat.magic");
+			boolean hex = player.hasPermission("heavenchat.chat.hex");
+
+			event.setMessage(ChatManager.format(event.getMessage(), color, bold, italic, underline, strikethrough,
+					magic, hex));
 		}
 	}
 	
@@ -262,11 +276,16 @@ public class ProxyChatListener implements Listener
 	{
 		if (!event.isCancelled())
 		{
+			if (!event.getChannel().hasRankOverride())
+			{
+				return;
+			}
+
 			ProxiedPlayer player = event.getSender().getPlayer();
 			for (String option : config.getStringList("rank-colors"))
 			{
 				String[] keyRank = option.split(" ");
-				if (player.hasPermission("heavenchat.color." + keyRank[0]))
+				if (player.hasPermission("heavenchat.rankcolor." + keyRank[0]))
 				{
 					event.setMessage(keyRank[1] + event.getMessage());
 					return;
@@ -358,7 +377,39 @@ public class ProxyChatListener implements Listener
 		}
 	}
 
+	@EventHandler(priority = EventPriority.LOW)
+	public void onChannelNickClear(ChannelMessageEvent event)
+	{
+		Member member = event.getSender();
+		ProxiedPlayer player = member.getPlayer();
+		if (player == null)
+		{
+			return;
+		}
 
+		if (!player.hasPermission("heavenchat.nickname") && !member.getNickname().isEmpty())
+		{
+			member.setNickname("");
+		}
+	}
+
+	@EventHandler(priority = EventPriority.LOW)
+	public void onPMNickClear(PrivateMessageEvent event)
+	{
+		Member member = event.getSender();
+		ProxiedPlayer player = member.getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+
+		if (!player.hasPermission("heavenchat.nickname") && !member.getNickname().isEmpty())
+		{
+			member.setNickname("");
+		}
+	}
+
+	/*
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void onPlayerTabComplete(TabCompleteEvent event)
 	{
@@ -385,4 +436,5 @@ public class ProxyChatListener implements Listener
 			}
 		}
 	}
+	 */
 }

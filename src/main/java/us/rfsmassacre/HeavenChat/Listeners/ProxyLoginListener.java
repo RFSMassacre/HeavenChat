@@ -4,10 +4,12 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PluginMessageEvent;
+import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
+import net.md_5.bungee.event.EventPriority;
 import us.rfsmassacre.HeavenChat.ChatPlugin;
 import us.rfsmassacre.HeavenChat.Channels.Channel;
 import us.rfsmassacre.HeavenChat.Channels.PluginChannel;
@@ -34,6 +36,20 @@ public class ProxyLoginListener implements Listener
 		channels = ChatPlugin.getChannelManager();
 		members = ChatPlugin.getMemberManager();
 	}
+
+	@EventHandler(priority = EventPriority.LOW)
+	public void onPlayerProxyJoin(PostLoginEvent event)
+	{
+		ProxiedPlayer player = event.getPlayer();
+		Member member = members.getMember(player);
+		if (member != null)
+		{
+			if (!player.hasPermission("heavenchat.nickname") && !member.getNickname().isEmpty())
+			{
+				member.setNickname("");
+			}
+		}
+	}
 	
 	/*
 	 * Rather than listening to proxy joining, this listens to
@@ -47,7 +63,14 @@ public class ProxyLoginListener implements Listener
 		{	
 			ChannelManager channels = ChatPlugin.getChannelManager();
 			
-			String prefix = new String(event.getData());
+			String[] data = new String(event.getData()).split(":");
+			String prefix = data[0];
+			String suffix = "";
+			if (data.length >= 2)
+			{
+				suffix = data[1];
+			}
+
 			ProxiedPlayer player = ProxyServer.getInstance().getPlayer(event.getReceiver().toString());
 			Member member = members.getMember(player);
 			
@@ -72,6 +95,7 @@ public class ProxyLoginListener implements Listener
 					defaultChannel.addMember(member, false);
 					
 					member.setPrefix(prefix);
+					member.setSuffix(suffix);
 					member.setFocusedChannel(defaultChannel);
 					members.addMember(member);
 					members.saveMember(member);
@@ -86,6 +110,7 @@ public class ProxyLoginListener implements Listener
 				else
 				{
 					member.setPrefix(prefix);
+					member.setSuffix(suffix);
 					
 					if (config.getBoolean("enable-join-messages"))
 					{
@@ -105,12 +130,14 @@ public class ProxyLoginListener implements Listener
 				}
 			}
 		}
+
 	}
 	
 	@EventHandler
 	public void onPlayerLeave(PlayerDisconnectEvent event)
-	{	
-		Member member = members.getMember(event.getPlayer());
+	{
+		ProxiedPlayer player = event.getPlayer();
+		Member member = members.getMember(player);
 		
 		//Unload data when player logs off the network
 		if (member != null)
@@ -124,13 +151,19 @@ public class ProxyLoginListener implements Listener
 				locale.broadcastLocale(false, "login.logout-message", "{player}", member.getDisplayName());
 				ProxyServer.getInstance().getPluginManager().callEvent(new MemberLeaveEvent(member));
 			}
+
+			if (!player.hasPermission("heavenchat.nickname") && !member.getNickname().isEmpty())
+			{
+				member.setNickname("");
+			}
 		}
 	}
 	
 	@EventHandler
 	public void onPlayerSwitch(ServerConnectedEvent event)
 	{
-		Member member = members.getMember(event.getPlayer());
+		ProxiedPlayer player = event.getPlayer();
+		Member member = members.getMember(player);
 		
 		//Update the server they are currently connected in
 		if (member != null)
@@ -146,7 +179,11 @@ public class ProxyLoginListener implements Listener
 					member.setFocusedChannel(serverChannel);
 				}
 			}
+
+			if (!player.hasPermission("heavenchat.nickname") && !member.getNickname().isEmpty())
+			{
+				member.setNickname("");
+			}
 		}
-		
 	}
 }

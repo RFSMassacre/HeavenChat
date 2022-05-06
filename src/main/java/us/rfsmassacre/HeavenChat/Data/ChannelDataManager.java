@@ -30,6 +30,7 @@ public class ChannelDataManager extends DataManager
 		data.set("type", channel.getType().toString());
 		data.set("format", channel.getFormat());
 		data.set("forwarded", channel.isForwarded());
+		data.set("rank-override", channel.hasRankOverride());
 		data.set("member-ids", channel.getMemberStringIds());
 	}
 
@@ -43,6 +44,7 @@ public class ChannelDataManager extends DataManager
 		channel.setShortcut(data.getString("shortcut"));
 		channel.setType(ChannelType.fromString(data.getString("type")));
 		channel.setFormat(data.getString("format"));
+		channel.setRankOverride(data.getBoolean("rank-override"));
 		channel.setForwarded(data.getBoolean("forwarded"));
 		channel.setMemberStringIds(data.getStringList("member-ids"));
 		
