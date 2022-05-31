@@ -271,7 +271,7 @@ public class ProxyChatListener implements Listener
 	/*
 	 * Fill message with appropriate color per rank.
 	 */
-	@EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler(priority = EventPriority.HIGH)
 	public void onColoredRankChat(ChannelMessageEvent event)
 	{
 		if (!event.isCancelled())
@@ -297,7 +297,7 @@ public class ProxyChatListener implements Listener
 	/*
 	 * Ping players when they receive a message to them
 	 */
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerPingChat(ChannelMessageReceiveEvent event)
 	{
 		if (!event.isCancelled() && config.getBoolean("ping.enabled"))

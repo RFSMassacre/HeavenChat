@@ -64,7 +64,11 @@ public class ProxyLoginListener implements Listener
 			ChannelManager channels = ChatPlugin.getChannelManager();
 			
 			String[] data = new String(event.getData()).split(":");
-			String prefix = data[0];
+			String prefix = "";
+			if (data.length >= 1)
+			{
+				prefix = data[0];
+			}
 			String suffix = "";
 			if (data.length >= 2)
 			{

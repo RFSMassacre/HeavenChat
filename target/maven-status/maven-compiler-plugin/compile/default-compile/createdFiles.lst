@@ -49,7 +49,6 @@ us\rfsmassacre\HeavenChat\Commands\ChannelCommand$FocusCommand.class
 us\rfsmassacre\HeavenChat\Commands\MainCommand$ReloadCommand.class
 us\rfsmassacre\HeavenChat\Managers\OptionManager.class
 us\rfsmassacre\HeavenChat\Commands\ListCommand.class
-us\rfsmassacre\HeavenChat\ChatBridge$1.class
 us\rfsmassacre\HeavenChat\Commands\FakeJoinCommand.class
 us\rfsmassacre\HeavenChat\Commands\PMCommand$MessageCommand.class
 us\rfsmassacre\HeavenChat\Tasks\SendChatTask.class

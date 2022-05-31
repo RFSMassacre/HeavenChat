@@ -43,7 +43,7 @@ public class IgnoreCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender))
 			{
@@ -101,7 +101,7 @@ public class IgnoreCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			locale.sendLocale(sender, "help.ignore");
 		}
@@ -118,7 +118,7 @@ public class IgnoreCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			Member member = members.getMember((ProxiedPlayer)sender);
 			ArrayList<UUID> ignoredIds = member.getIgnoredPlayerIds();

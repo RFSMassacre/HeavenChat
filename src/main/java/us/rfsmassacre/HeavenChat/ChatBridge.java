@@ -51,18 +51,14 @@ public class ChatBridge extends JavaPlugin
 			chat = rsp.getProvider();
 		
 		//Set up schedulers
-		getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() 
+		getServer().getScheduler().scheduleSyncRepeatingTask(this, () ->
 		{
-            @Override
-            public void run() 
-            {
-                for (Player player : Bukkit.getOnlinePlayers())
-                {
-                	new SendPrefixTask(player).runTask(ChatBridge.getInstance());
-                	new SendSuffixTask(player).runTask(ChatBridge.getInstance());
-                	new SendProximityTask(player).runTask(ChatBridge.getInstance());
-                }
-            }
+			for (Player player : Bukkit.getOnlinePlayers())
+			{
+				new SendPrefixTask(player).runTask(ChatBridge.getInstance());
+				new SendSuffixTask(player).runTask(ChatBridge.getInstance());
+				new SendProximityTask(player).runTask(ChatBridge.getInstance());
+			}
 	    }, 0L, 5L);
 	}
 	

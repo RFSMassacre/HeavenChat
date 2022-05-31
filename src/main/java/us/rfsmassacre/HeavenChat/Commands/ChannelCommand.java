@@ -52,7 +52,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender))
 			{
@@ -85,7 +85,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender))
 			{
@@ -118,7 +118,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender))
 			{
@@ -170,7 +170,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender))
 			{
@@ -225,7 +225,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length >= 2)
 			{
@@ -290,7 +290,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length >= 3)
 			{
@@ -354,7 +354,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length >= 3)
 			{
@@ -420,7 +420,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length >= 3)
 			{
@@ -444,7 +444,7 @@ public class ChannelCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			locale.sendLocale(sender, "help.channel");
 		}

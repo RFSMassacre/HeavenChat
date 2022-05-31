@@ -40,7 +40,7 @@ public class MainCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args)
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			String version = ChatPlugin.getInstance().getDescription().getVersion();
 			locale.sendLocale(sender, "admin.info", "{version}", version);
@@ -60,7 +60,7 @@ public class MainCommand extends HeavenCommand
 		}
 		
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			//Reloads config and locale
 			ChatPlugin.getConfigManager().reloadFiles();
@@ -88,7 +88,7 @@ public class MainCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			ChatPlugin.getMemberManager().purgeBrokenMembers();
 			locale.sendLocale(sender, "admin.purge");
@@ -108,7 +108,7 @@ public class MainCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			MenuManager menu = ChatPlugin.getMenuManager();
 			

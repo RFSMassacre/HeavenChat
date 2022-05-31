@@ -48,7 +48,7 @@ public class AFKCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!(isConsole(sender)))
 			{

@@ -34,7 +34,7 @@ public class RealNameCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length >= 1)
 			{

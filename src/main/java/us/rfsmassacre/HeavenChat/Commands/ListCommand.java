@@ -30,7 +30,7 @@ public class ListCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			MenuManager list = ChatPlugin.getMenuManager();
 			locale.sendMessage(sender, list.getListMenu());

@@ -48,7 +48,7 @@ public class NickCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender))
 			{
@@ -82,7 +82,7 @@ public class NickCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (!isConsole(sender) && args.length >= 1)
 			{
@@ -144,7 +144,7 @@ public class NickCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length == 1)
 			{
@@ -213,7 +213,7 @@ public class NickCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			if (args.length >= 3)
 			{
@@ -270,7 +270,7 @@ public class NickCommand extends HeavenCommand
 		}
 
 		@Override
-		protected void onCommandRun(CommandSender sender, String[] args) 
+		protected void onRun(CommandSender sender, String[] args)
 		{
 			locale.sendLocale(sender, "help.nickname");
 		}

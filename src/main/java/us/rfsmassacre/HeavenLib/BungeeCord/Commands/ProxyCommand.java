@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
-public abstract class ProxyCommand extends Command
+public abstract class ProxyCommand extends Command implements TabExecutor
 {
 	/*
 	 * SpigotCommand is structured to avoid using long
@@ -96,7 +97,7 @@ public abstract class ProxyCommand extends Command
 		public void execute(CommandSender sender, String[] args)
 		{
 			if (sender.hasPermission(this.permission))
-				onCommandRun(sender, args);
+				onRun(sender, args);
 			else
 				command.onCommandFail(sender);
 		}
@@ -104,6 +105,6 @@ public abstract class ProxyCommand extends Command
 		/*
 		 * Define what to run when player has permission.
 		 */
-		protected abstract void onCommandRun(CommandSender sender, String[] args);
+		protected abstract void onRun(CommandSender sender, String[] args);
 	}
 }
